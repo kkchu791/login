@@ -1,0 +1,69 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: 'Titillium Web', sans-serif !important;
+}
+
+.auth-form {
+  background: #2A3847;
+  border: 20px solid #C9C4C3;
+  padding: 40px;
+  width: 60%;
+  height: 70%;
+  position: absolute;
+  top: 50%;
+   -ms-transform: translateY(-50%);
+   transform: translateY(-50%);
+  display: inline-table;
+  font-weight: 300 !important;
+}
+
+
+.view-buttons {
+  width: 100%;
+}
+
+.sign-up-btn {
+  font-weight: 200 !important;
+}
+
+.log-in-btn {
+  font-weight: 200 !important;
+}
+
+.active {
+  background: #36B795 !important;
+}
+
+.sign-up-message {
+  color: white;
+  font-family: 'Titillium Web', sans-serif;
+  padding: 30px 0 25px 0;
+  font-size: 30px;
+  font-weight: 200;
+}
+
+.submit-btn {
+  background: #36B795 !important;
+  width: 100%;
+  border-radius: 0px !important;
+  font-size: 32px !important;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.form-control {
+  background: transparent !important;
+  border-radius: 0 !important;
+  color: white !important;
+}
+
+.form-group {
+  padding:10px 0;
+}
+
+.actions {
+  padding: 10px 0 ;
+}
