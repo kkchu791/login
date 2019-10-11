@@ -1,4 +1,4 @@
-import React, { useState }  from 'react';
+import React, { useState, useEffect }  from 'react';
 import './styles/authform.css';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
@@ -6,14 +6,17 @@ import Col from 'react-bootstrap/Col'
 import signUpApi from '../../api/userAuth.api.js'
 
 const SignUpForm = () => {
-  console.log(signUpApi, 'signUpApi')
   const [data, setData] = useState({})
+  const [msg, setMsg] = useState("")
 
-  const handleSubmit = event => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(data, "data");
-    signUpApi(data)
+    let result = await signUpApi(data)
+    setMsg(result)
   };
+
+  useEffect(() => {
+  },[msg]);
 
   const handleInputChange = evt => {
     var value = evt.target.value
@@ -21,12 +24,15 @@ const SignUpForm = () => {
     setData({...data, ...{[name]: value}})
   }
 
-  console.log(data, 'data')
 
   return (
     <div className="sign-up-form">
       <div className="sign-up-message">
         Sign Up for Free
+      </div>
+
+      <div className="message">
+        {msg}
       </div>
 
       <Form onSubmit={handleSubmit}>

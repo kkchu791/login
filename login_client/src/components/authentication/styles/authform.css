@@ -46,6 +46,11 @@
   font-weight: 200;
 }
 
+.message {
+  color: white;
+  font-family: 'Titillium Web', sans-serif;
+}
+
 .submit-btn {
   background: #36B795 !important;
   width: 100%;
