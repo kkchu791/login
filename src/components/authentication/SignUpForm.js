@@ -5,16 +5,24 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
 
 const SignUpForm = () => {
+
+  const handleSubmit = event => {
+    const form = event.currentTarget;
+    console.log(form, "123ds");
+
+    //using our api post over here
+  };
+
   return (
     <div className="sign-up-form">
       <div className="sign-up-message">
         Sign Up for Free
       </div>
-      
-      <Form>
+
+      <Form onSubmit={handleSubmit}>
         <Form.Row>
           <Form.Group as={Col} controlId="formGridFirstname">
-            <Form.Control type="first_name" placeholder="First Name*" />
+            <Form.Control required type="first_name" placeholder="First Name*" />
           </Form.Group>
 
           <Form.Group as={Col} controlId="formGridLastName">

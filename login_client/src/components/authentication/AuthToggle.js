@@ -3,7 +3,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import Button from 'react-bootstrap/Button'
 
 const AuthToggle = ({
-  handleChange,
+  handleViewChange,
   view,
 }) => {
   return (
@@ -12,7 +12,7 @@ const AuthToggle = ({
         <Button
           variant="secondary"
           className={`sign-up-btn ${view === "2"? '' : 'active' }`}
-          onClick={handleChange}
+          onClick={handleViewChange}
           size="lg"
           type="radio"
           name="radio"
@@ -23,7 +23,7 @@ const AuthToggle = ({
         <Button
           variant="secondary"
           className={`log-in-btn ${view === "2" ? 'active' : '' }`}
-          onClick={handleChange}
+          onClick={handleViewChange}
           size="lg"
           type="radio"
           name="radio"

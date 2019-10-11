@@ -14,7 +14,7 @@ const AuthForm = () => {
 
   const [view, setView] = useState(1);
 
-  const handleViewChange = evt => {
+  const handleChange = evt => {
     setView(evt.target.value);
   }
 
@@ -26,7 +26,7 @@ const AuthForm = () => {
       <div className="auth-form">
 
         <AuthToggle
-          handleViewChange={handleViewChange}
+          handleChange={handleChange}
           view={view}
         />
 
