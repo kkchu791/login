@@ -46,7 +46,6 @@ const checkLoggedInApi = () => {
       })
 }
 
-
 const logOutApi = () => {
   return axios.delete(`#{API_BASE_URL}/api/v1/logout`, {withCredentials: true})
       .then(res => {
