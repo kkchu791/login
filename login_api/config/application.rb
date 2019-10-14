@@ -32,11 +32,8 @@ module LoginApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-         origins '*'
-         resource '*', :headers => :any, :methods => [:get, :post, :options]
-       end
-    end
+    config.session_store :cookie_store, key: "_authentication_app_session_#{Rails.env}"
+    config.middleware.use ActionDispatch::Cookies # Required for all session management
+    config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
   end
 end
