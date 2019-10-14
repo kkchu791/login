@@ -4,7 +4,7 @@ Creating a login form built with react and rails.
 
 -----------------------------------------------------------------------------
 
-Live site can be found here:[ll-login-client.surge.sh](ll-login-client.surge.sh)
+Live site can be found here: [demo](https://ll-login-client.surge.sh)
 
 ## Setup backend
 
