@@ -38,7 +38,7 @@
   background: #36B795 !important;
 }
 
-.sign-up-message, .log-in-message {
+.sign-up-message, .log-in-message, .log-out-message {
   color: white;
   font-family: 'Titillium Web', sans-serif;
   padding: 30px 0 25px 0;

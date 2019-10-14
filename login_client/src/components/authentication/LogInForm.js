@@ -1,22 +1,68 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './styles/authform.css';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
+import { logInApi }  from '../../api/userAuth.api.js'
 
-const LogIn = () => {
+const LogIn = ({
+  errors,
+  handleSuccessfulAuth,
+}) => {
+  const [data, setData] = useState({})
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let result = await logInApi(data)
+
+    handleSuccessfulAuth(result)
+  };
+
+  const handleInputChange = evt => {
+    var value = evt.target.value
+    var name = evt.target.name
+    setData({...data, ...{[name]: value}})
+  }
+
+  const renderErrors = () => {
+    if (errors.length > 0) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          {errors.map((error, index) => {
+            return (
+              <div key={index}>{error}</div>
+            )
+          })}
+        </div>
+      )
+    }
+  }
+
   return (
     <div className="log-in-form">
       <div className="log-in-message">
         Welcome Back!
       </div>
 
-      <Form>
+      { renderErrors() }
+      <Form onSubmit={handleSubmit}>
         <Form.Group controlId="formGridEmail">
-          <Form.Control type="email" placeholder="Email Address*" />
+          <Form.Control
+            onChange={handleInputChange}
+            name="email"
+            type="email"
+            placeholder="Email Address*"
+            required
+          />
         </Form.Group>
 
         <Form.Group controlId="formGridPassword">
-          <Form.Control type="password" placeholder="Set A Password*" />
+          <Form.Control
+            onChange={handleInputChange}
+            name="password"
+            type="password"
+            placeholder="Password*"
+            required
+          />
         </Form.Group>
 
         <div className="forgot-password-row">
@@ -30,7 +76,11 @@ const LogIn = () => {
         </div>
 
         <div className="actions">
-          <Button className="submit-btn" variant="secondary" type="submit">
+          <Button
+            className="submit-btn"
+            variant="secondary"
+            type="submit"
+          >
             Log In
           </Button>
         </div>

@@ -1,23 +1,5 @@
 import axios from 'axios';
 
-// const logInApi = (username, password) => {
-//   const requestOptions = {
-//     method: 'POST',
-//     headers: {
-//       'Content-Type': 'application/json'
-//     },
-//     body: JSON.stringify({
-//       username,
-//       password
-//     })
-//   };
-//
-//   axios.post(`localhost:3001/api/v1/sessions`, { requestOptions })
-//       .then(res => {
-//         console.log(res)
-//       })
-// } ///
-
 const signUpApi = ({first_name, last_name, email, password}) => {
   const data = {
     first_name,
@@ -26,14 +8,52 @@ const signUpApi = ({first_name, last_name, email, password}) => {
     password
   }
 
-  return axios.post(`http://localhost:3001/api/v1/users`, data)
+  return axios.post(`http://localhost:3001/api/v1/signup`, data, {withCredentials: true})
       .then(res => {
-        if (res.data.data === 'success') {
-          return `${first_name}, you've successfully signed up! Try logging in.`
-        } else {
-          return res.error
-        }
+        return res;
+      })
+      .catch(error => {
+        console.log("error", error);
       })
 }
 
-export default signUpApi
+const logInApi = ({email, password}) => {
+  const data = {
+      email,
+      password,
+  }
+
+  return axios.post(`http://localhost:3001/api/v1/login`, data, {withCredentials: true})
+      .then(res => {
+        return res;
+      })
+      .catch(error => {
+        console.log("error", error);
+      })
+}
+
+const checkLoggedInApi = () => {
+  return axios.get(`http://localhost:3001/api/v1/logged_in`, {withCredentials: true})
+      .then(res => {
+        return res;
+      })
+      .catch(error => {
+        console.log("error", error);
+      })
+}
+
+
+const logOutApi = () => {
+  return axios.delete(`http://localhost:3001/api/v1/logout`, {withCredentials: true})
+      .then(res => {
+        return res
+      })
+}
+
+
+export {
+  signUpApi,
+  logInApi,
+  checkLoggedInApi,
+  logOutApi,
+};

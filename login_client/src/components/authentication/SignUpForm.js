@@ -1,22 +1,22 @@
-import React, { useState, useEffect }  from 'react';
+import React, { useState }  from 'react';
 import './styles/authform.css';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
-import signUpApi from '../../api/userAuth.api.js'
+import { signUpApi } from '../../api/userAuth.api.js'
 
-const SignUpForm = () => {
+const SignUpForm = ({
+  errors,
+  handleSuccessfulAuth,
+}) => {
   const [data, setData] = useState({})
-  const [msg, setMsg] = useState("")
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     let result = await signUpApi(data)
-    setMsg(result)
-  };
 
-  useEffect(() => {
-  },[msg]);
+    handleSuccessfulAuth(result)
+  };
 
   const handleInputChange = evt => {
     var value = evt.target.value
@@ -24,6 +24,19 @@ const SignUpForm = () => {
     setData({...data, ...{[name]: value}})
   }
 
+  const renderErrors = () => {
+    if (errors.length > 0) {
+      return (
+        <div className="alert alert-danger" role="alert">
+          {errors.map((error, index) => {
+            return (
+              <div key={index}>{error}</div>
+            )
+          })}
+        </div>
+      )
+    }
+  }
 
   return (
     <div className="sign-up-form">
@@ -31,9 +44,7 @@ const SignUpForm = () => {
         Sign Up for Free
       </div>
 
-      <div className="message">
-        {msg}
-      </div>
+      { renderErrors() }
 
       <Form onSubmit={handleSubmit}>
         <Form.Row>
@@ -43,6 +54,7 @@ const SignUpForm = () => {
               name="first_name"
               type="first_name"
               placeholder="First Name*"
+              required
             />
           </Form.Group>
 
@@ -52,6 +64,7 @@ const SignUpForm = () => {
               name="last_name"
               type="last_name"
               placeholder="Last Name*"
+              required
             />
           </Form.Group>
         </Form.Row>
@@ -61,7 +74,9 @@ const SignUpForm = () => {
             onChange={handleInputChange}
             name="email"
             type="email"
-            placeholder="Email Address*" />
+            placeholder="Email Address*"
+            required
+          />
         </Form.Group>
 
         <Form.Group controlId="formGridPassword">
@@ -69,7 +84,9 @@ const SignUpForm = () => {
             onChange={handleInputChange}
             name="password"
             type="password"
-            placeholder="Set A Password*" />
+            placeholder="Set A Password*"
+            required
+          />
         </Form.Group>
 
         <div className="actions">
