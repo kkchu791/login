@@ -32,7 +32,7 @@ module LoginApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
 
-    config.session_store :cookie_store, key: "_authentication_app_session_#{Rails.env}"
+    config.session_store :cookie_store, key: "_login_app_session_#{Rails.env}"
     config.middleware.use ActionDispatch::Cookies # Required for all session management
     config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
   end
