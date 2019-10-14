@@ -9,9 +9,9 @@ const signUpApi = ({first_name, last_name, email, password}) => {
     password
   }
 
-  console.log(API_BASE_URL, "API_BASE")
-
-  return axios.post(`#{API_BASE_URL}/api/v1/signup`, data, {withCredentials: true})
+  console.log("hello, changes")
+  
+  return axios.post(`${API_BASE_URL}/api/v1/signup`, data, {withCredentials: true})
       .then(res => {
         console.log(res, 'res')
         return res;
@@ -27,7 +27,7 @@ const logInApi = ({email, password}) => {
       password,
   }
 
-  return axios.post(`#{API_BASE_URL}/api/v1/login`, data, {withCredentials: true})
+  return axios.post(`${API_BASE_URL}/api/v1/login`, data, {withCredentials: true})
       .then(res => {
         return res;
       })
@@ -37,7 +37,7 @@ const logInApi = ({email, password}) => {
 }
 
 const checkLoggedInApi = () => {
-  return axios.get(`#{API_BASE_URL}/api/v1/logged_in`, {withCredentials: true})
+  return axios.get(`${API_BASE_URL}/api/v1/logged_in`, {withCredentials: true})
       .then(res => {
         return res;
       })
@@ -47,7 +47,7 @@ const checkLoggedInApi = () => {
 }
 
 const logOutApi = () => {
-  return axios.delete(`#{API_BASE_URL}/api/v1/logout`, {withCredentials: true})
+  return axios.delete(`${API_BASE_URL}/api/v1/logout`, {withCredentials: true})
       .then(res => {
         return res
       })
