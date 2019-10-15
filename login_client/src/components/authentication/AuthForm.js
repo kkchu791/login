@@ -7,21 +7,21 @@ import SuccessTemplate from './SuccessTemplate'
 import { checkLoggedInApi } from '../../api/userAuth.api.js'
 
 const AUTH_VIEWS = {
-  1: 'signUp',
-  2: 'logIn',
-  3: 'successTemplate',
+  SIGNUP: 'signup',
+  LOGIN: 'login',
+  SUCCESS: 'success',
 }
 
 const AuthForm = () => {
 
-  const [view, setView] = useState(1);
+  const [view, setView] = useState(AUTH_VIEWS.SIGNUP);
   const [loggedInStatus, setLoggedInStatus] = useState("NOT_LOGGED_IN");
   const [user, setUser] = useState({});
   const [errors, setErrors] = useState([])
 
   const handleSuccessfulAuth = (result) => {
     if (result.data.logged_in && loggedInStatus === "NOT_LOGGED_IN") {
-      setView(3)
+      setView(AUTH_VIEWS.SUCCESS)
       setUser(result.data.user)
       setLoggedInStatus("LOGGED_IN")
     } else if (!result.data.logged_in && loggedInStatus === "LOGGED_IN") {
@@ -33,15 +33,16 @@ const AuthForm = () => {
   }
 
   const handleViewChange = evt => {
-    setView(parseInt(evt.target.value));
+    setView(AUTH_VIEWS[evt.target.value]);
     setErrors([])
   }
 
   const handleLogOut = (result) => {
     if (result.data.logged_out) {
-      setView(2)
+      setView(AUTH_VIEWS.LOGIN)
       setUser({})
       setLoggedInStatus("NOT_LOGGED_IN")
+      setErrors([])
     }
   };
 
@@ -68,7 +69,7 @@ const AuthForm = () => {
           view={view}
         />
 
-        { AUTH_VIEWS[view] === "logIn" ? 
+        { view === "login" ? 
           <LogInForm
             errors={errors}
             handleSuccessfulAuth={handleSuccessfulAuth}

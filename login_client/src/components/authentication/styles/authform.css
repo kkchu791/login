@@ -11,7 +11,7 @@
   border: 20px solid #C9C4C3;
   padding: 40px;
   width: 60%;
-  height: 555px;
+  min-height: 575px;
   position: absolute;
   top: 50%;
    -ms-transform: translateY(-50%);

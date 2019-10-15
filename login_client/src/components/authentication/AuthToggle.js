@@ -11,23 +11,23 @@ const AuthToggle = ({
       <ButtonGroup className="view-buttons">
         <Button
           variant="secondary"
-          className={`sign-up-btn ${view === 2? '' : 'active' }`}
+          className={`sign-up-btn ${view === 'login'? '' : 'active' }`}
           onClick={handleViewChange}
           size="lg"
           type="radio"
           name="radio"
-          value="1"
+          value="SIGNUP"
         >
           Sign Up
         </Button>
         <Button
           variant="secondary"
-          className={`log-in-btn ${view === 2 ? 'active' : '' }`}
+          className={`log-in-btn ${view === 'login' ? 'active' : '' }`}
           onClick={handleViewChange}
           size="lg"
           type="radio"
           name="radio"
-          value="2"
+          value="LOGIN"
         >
           Log In
         </Button>

@@ -8,12 +8,9 @@ const signUpApi = ({first_name, last_name, email, password}) => {
     email,
     password
   }
-
-  console.log("hello, changes")
   
   return axios.post(`${API_BASE_URL}/api/v1/signup`, data, {withCredentials: true})
       .then(res => {
-        console.log(res, 'res')
         return res;
       })
       .catch(error => {
