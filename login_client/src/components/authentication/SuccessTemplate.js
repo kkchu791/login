@@ -3,18 +3,17 @@ import React  from 'react';
 import './styles/authform.css';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { logOutApi } from '../../api/userAuth.api.js'
+import { logout } from '../../api/userAuth.api.js'
 
 const SuccessTemplate = ({
   user,
-  handleLogOut,
+  handleSuccessfulAuth,
 }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let result = await logOutApi()
-
-    handleLogOut(result);
+    await logout()
+    handleSuccessfulAuth({ logged_in: false, user: {} });
   };
 
   return (

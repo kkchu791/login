@@ -2,19 +2,17 @@ import React, { useState } from 'react';
 import './styles/authform.css';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
-import { logInApi }  from '../../api/userAuth.api.js'
+import { login }  from '../../api/userAuth.api.js'
 
 const LogIn = ({
   errors,
-  handleSuccessfulAuth,
+  handleSuccessfulAuth
 }) => {
   const [data, setData] = useState({})
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let result = await logInApi(data)
-
-    handleSuccessfulAuth(result)
+    handleSuccessfulAuth(await login(data));
   };
 
   const handleInputChange = evt => {

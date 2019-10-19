@@ -3,19 +3,17 @@ import './styles/authform.css';
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col'
-import { signUpApi } from '../../api/userAuth.api.js'
+import { signup } from '../../api/userAuth.api.js'
 
 const SignUpForm = ({
   errors,
-  handleSuccessfulAuth,
+  handleSuccessfulAuth
 }) => {
   const [data, setData] = useState({})
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    let result = await signUpApi(data)
-
-    handleSuccessfulAuth(result)
+    handleSuccessfulAuth(await signup(data));
   };
 
   const handleInputChange = evt => {
