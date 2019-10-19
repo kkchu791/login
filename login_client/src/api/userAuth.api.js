@@ -1,6 +1,7 @@
 import axios from 'axios';
 import API_BASE_URL from '../config/url_config'
 
+//const API_BASE_URL = "http://localhost:3001"
 const signUpApi = ({first_name, last_name, email, password}) => {
   const data = {
     first_name,
