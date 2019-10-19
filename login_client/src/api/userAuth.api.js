@@ -1,59 +1,35 @@
 import axios from 'axios';
 import API_BASE_URL from '../config/url_config'
 
-const signUpApi = ({first_name, last_name, email, password}) => {
-  const data = {
-    first_name,
-    last_name,
-    email,
-    password
-  }
-  
-  return axios.post(`${API_BASE_URL}/api/v1/signup`, data, {withCredentials: true})
-      .then(res => {
-        return res;
-      })
-      .catch(error => {
-        console.log("error", error);
-      })
-}
+const baseLoginApi = axios.create({
+  baseURL: API_BASE_URL,
+  withCredentials: true
+});
 
-const logInApi = ({email, password}) => {
-  const data = {
+export const signup = ({
+  first_name,
+  last_name,
+  email,
+  password
+}) => {
+  return baseLoginApi
+    .post('api/v1/signup', {
+      first_name,
+      last_name,
       email,
-      password,
-  }
-
-  return axios.post(`${API_BASE_URL}/api/v1/login`, data, {withCredentials: true})
-      .then(res => {
-        return res;
-      })
-      .catch(error => {
-        console.log("error", error);
-      })
+      password
+    })
+    .then(({ data }) => data);
 }
 
-const checkLoggedInApi = () => {
-  return axios.get(`${API_BASE_URL}/api/v1/logged_in`, {withCredentials: true})
-      .then(res => {
-        return res;
-      })
-      .catch(error => {
-        console.log("error", error);
-      })
-}
+export const login = ({ email, password }) => baseLoginApi
+  .post('api/v1/login', { email, password })
+  .then(({ data }) => data);
 
-const logOutApi = () => {
-  return axios.delete(`${API_BASE_URL}/api/v1/logout`, {withCredentials: true})
-      .then(res => {
-        return res
-      })
-}
+export const isLoggedIn = () => baseLoginApi.get('api/v1/logged_in')
+  .then(({ data }) => data);
 
+export const logout = () => baseLoginApi.delete('api/v1/logout')
+  .then(({ data }) => data);
 
-export {
-  signUpApi,
-  logInApi,
-  checkLoggedInApi,
-  logOutApi,
-};
+// export const isLoggedIn = () => Promise.resolve({ logged_in: true, user: { email: 'sfd' }})
